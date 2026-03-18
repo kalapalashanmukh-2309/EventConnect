@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Connect | Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="index.html" class="logo">Event Connect</a>
+      <div class="header-actions">
+        <nav>
+          <ul class="nav-list">
+            <li><a href="index.html">Login</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="profile.html">Profile</a></li>
+          </ul>
+        </nav>
+        <button type="button" id="themeToggleButton" class="theme-btn">
+          Switch To Dark Mode
+        </button>
+      </div>
+    </header>
+
+    <main class="page-container">
+      <section class="hero-card dashboard-hero">
+        <div class="hero-text">
+          <p class="small-label">Dashboard</p>
+          <h1 id="dashboardTitle">Event Services</h1>
+          <p id="dashboardDescription">
+            Manage services, book services, and view profile information in one
+            clean place.
+          </p>
+        </div>
+        <div class="status-box">
+          <h2>Account Info</h2>
+          <div class="status-grid">
+            <div class="status-item">
+              <p class="status-label">Username</p>
+              <p class="status-value" id="dashboardUser">Guest</p>
+            </div>
+            <div class="status-item">
+              <p class="status-label">Role</p>
+              <p class="status-value" id="dashboardRole">Not selected</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel company-only is-hidden" id="companyPanel">
+        <div class="section-heading">
+          <h2>Your Company Dashboard</h2>
+          <p>Add a service, publish it, and view bookings for your services.</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="card-panel">
+            <h3>Add Service</h3>
+            <form id="serviceForm" novalidate>
+              <label for="serviceName">Service Name</label>
+              <input type="text" id="serviceName" placeholder="Wedding Decor" />
+
+              <label for="serviceCategory">Event Category</label>
+              <select id="serviceCategory">
+                <option value="">Select category</option>
+                <option value="Wedding">Wedding</option>
+                <option value="Birthday">Birthday</option>
+                <option value="Corporate">Corporate</option>
+                <option value="College Fest">College Fest</option>
+                <option value="Private Party">Private Party</option>
+              </select>
+
+              <label for="serviceType">Service Type</label>
+              <input type="text" id="serviceType" placeholder="Decoration" />
+
+              <label for="servicePrice">Price</label>
+              <input type="number" id="servicePrice" placeholder="5000" />
+
+              <label for="serviceContact">Contact Number</label>
+              <input type="text" id="serviceContact" placeholder="9876543210" />
+
+              <label for="serviceImage">Service Image</label>
+              <input type="file" id="serviceImage" accept="image/*" />
+
+              <p id="serviceError" class="error-message"></p>
+              <button type="button" id="addServiceButton" class="primary-btn">
+                Add Service
+              </button>
+            </form>
+          </article>
+
+          <article class="card-panel">
+            <h3>Publish Company Profile</h3>
+            <form id="companyProfileForm" novalidate>
+              <label for="companyAbout">About Company</label>
+              <input
+                type="text"
+                id="companyAbout"
+                placeholder="We organize premium weddings and parties"
+              />
+
+              <label for="companyHighlights">Services You Provide</label>
+              <input
+                type="text"
+                id="companyHighlights"
+                placeholder="Decor, catering, stage setup"
+              />
+
+              <label for="companyWorks">Previous Works</label>
+              <input
+                type="text"
+                id="companyWorks"
+                placeholder="Beach wedding, birthday hall decor, college fest stage"
+              />
+
+              <p id="companyProfileError" class="error-message"></p>
+              <button
+                type="button"
+                id="saveCompanyProfileButton"
+                class="primary-btn"
+              >
+                Save Company Profile
+              </button>
+            </form>
+          </article>
+
+          <article class="card-panel media-panel">
+            <h3>Media</h3>
+            <p>Events organised by us</p>
+            
+            <video controls class="full-media" poster="../mythic.jpg">
+              <source
+                src="evento.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </article>
+        </div>
+
+        <article class="panel-block">
+          <div class="section-heading">
+            <h3>Your Services</h3>
+            <p id="companyServiceCount">0 services</p>
+          </div>
+          <div id="companyServices" class="services-grid"></div>
+        </article>
+
+        <article class="panel-block">
+          <div class="section-heading">
+            <h3>Bookings For Your Services</h3>
+            <p id="companyBookingCount">0 bookings</p>
+          </div>
+          <div id="companyBookings" class="booking-list"></div>
+        </article>
+      </section>
+
+      <section class="panel customer-only is-hidden" id="customerPanel">
+        <div class="section-heading">
+          <h2>Customer Dashboard</h2>
+          <p>Choose a category, select a service card, and complete the booking form.</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="card-panel">
+            <h3>Choose Event Type</h3>
+            <label for="categoryFilter">Event Category</label>
+            <select id="categoryFilter">
+              <option value="All">All Categories</option>
+              <option value="Wedding">Wedding</option>
+              <option value="Birthday">Birthday</option>
+              <option value="Corporate">Corporate</option>
+              <option value="College Fest">College Fest</option>
+              <option value="Private Party">Private Party</option>
+            </select>
+            <ul class="feature-list">
+              <li>Select a category to narrow the service list.</li>
+              <li>Click `Book Now` on a service card.</li>
+              <li>Complete the form to save the booking.</li>
+            </ul>
+          </article>
+
+          <article class="card-panel">
+            <h3>Book Service</h3>
+            <form id="bookingForm" novalidate>
+              <label for="selectedService">Selected Service</label>
+              <input
+                type="text"
+                id="selectedService"
+                placeholder="Click Book Now on a service"
+                readonly
+              />
+
+              <label for="bookingCategory">Event Category</label>
+              <select id="bookingCategory">
+                <option value="">Select category</option>
+                <option value="Wedding">Wedding</option>
+                <option value="Birthday">Birthday</option>
+                <option value="Corporate">Corporate</option>
+                <option value="College Fest">College Fest</option>
+                <option value="Private Party">Private Party</option>
+              </select>
+
+              <label for="bookingDate">Event Date</label>
+              <input type="date" id="bookingDate" />
+
+              <label for="guestCount">Guest Count</label>
+              <input type="number" id="guestCount" placeholder="150" />
+
+              <label for="bookingNote">Event Note</label>
+              <input
+                type="text"
+                id="bookingNote"
+                placeholder="Evening reception"
+              />
+
+              <p id="bookingError" class="error-message"></p>
+              <button type="button" id="bookServiceButton" class="primary-btn">
+                Book Service
+              </button>
+            </form>
+          </article>
+        </div>
+
+        <article class="panel-block">
+          <div class="section-heading">
+            <h3>Your Upcoming Bookings</h3>
+            <p id="customerBookingCount">0 bookings</p>
+          </div>
+          <div id="customerBookings" class="booking-list"></div>
+        </article>
+
+        <article class="panel-block">
+          <div class="section-heading">
+            <h3>Previous Bookings</h3>
+            <p id="previousBookingCount">0 previous bookings</p>
+          </div>
+          <div id="previousBookings" class="booking-list"></div>
+        </article>
+      </section>
+
+      <section class="panel-block">
+        <div class="section-heading">
+          <h2 id="servicesHeading">Available Services</h2>
+          <p id="loadingMessage">Loading services...</p>
+        </div>
+        <div id="servicesContainer" class="services-grid"></div>
+      </section>
+
+      <section class="panel-block customer-only is-hidden" id="companyPublicProfilePanel">
+        <div class="section-heading">
+          <h2>Event Company Profile</h2>
+          <p id="companyPublicProfileName">Select a company</p>
+        </div>
+        <div id="companyPublicProfile" class="company-public-profile">
+          <p class="empty-state">
+            Click `View Company` on a service card to see the event company profile.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Connect | Profile</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="index.html" class="logo">Event Connect</a>
+      <div class="header-actions">
+        <nav>
+          <ul class="nav-list">
+            <li><a href="index.html">Login</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="profile.html">Profile</a></li>
+          </ul>
+        </nav>
+        <button type="button" id="themeToggleButton" class="theme-btn">
+          Switch To Dark Mode
+        </button>
+      </div>
+    </header>
+
+    <main class="page-container">
+      <section class="profile-card">
+        <p class="small-label">Profile Page</p>
+        <h1>Welcome, <span id="profileUsername">Student</span></h1>
+        <p><strong>Login role:</strong> <span id="profileRole">Not selected</span></p>
+        <div class="profile-note" id="profileNote">
+          Your profile view will change based on your selected login role.
+        </div>
+        <p>
+          This page reads the logged-in username and selected role from session
+          storage and lets the user log out safely.
+        </p>
+        <div id="profileDetails" class="profile-details"></div>
+        <button id="logoutButton" class="danger-btn">Logout</button>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
